@@ -118,41 +118,48 @@ return button;
 		// Complete the code in the askQuestion() method. When you play the game, the score should change.
 
 		// If the buttonPressed was the secondButton
-
+if(buttonPressed==secondButton) {
+	askQuestion("What is the National Animal of the U.S.?", "What is Bald Eagle", 200);
+}
 			// Call the askQuestion() method with a harder question
 
 		// Clear the text on the button that was pressed (set the button text to nothing)
-
+buttonPressed.setText("");
 	}
 
 	private void askQuestion(String question, String correctAnswer, int prizeMoney) {
 		
 		// Use the playJeopardyTheme() method to play music while the use thinks of an answer
-		
+	playJeopardyTheme();
 		// Remove this temporary message and replace it with a pop-up that asks the user the question
-		JOptionPane.showMessageDialog(null, "this is where the question will be asked");
-		
+String answer = JOptionPane.showInputDialog(question);
 		// Stop the theme music when they have entered their response. Hint: use the sound variable 
-		
+	sound.stop();
 		// If the answer is correct
-
+if(answer.equals(correctAnswer)) {
+	score+=prizeMoney;
+	JOptionPane.showMessageDialog(null, "You were correct.");
+}
 			// Increase the score by the prizeMoney
 
 			// Pop up a message to tell the user they were correct
 
 		// Otherwise
-
+else {
+	score-=prizeMoney;
+	JOptionPane.showMessageDialog(null, "You were wrong. It was " + correctAnswer);
+}
 			// Decrement the score by the prizeMoney
 
 			// Pop up a message to tell the user they were wrong and give them the correct answer
 
 		// Call the updateScore() method
-
+updateScore();
 	}
 
 	public void playJeopardyTheme() {
 		try {
-			sound = JApplet.newAudioClip(getClass().getResource("jeopardy.wav"));
+			sound = JApplet.newAudioClip(getClass().getResource("Jeopardy.mp3"));
 			sound.play();
 			Thread.sleep(3400);
 		} catch (Exception ex) {
